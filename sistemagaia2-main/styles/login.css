@@ -1,0 +1,178 @@
+/* ...existing code... */
+
+.login-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw; height: 100vh;
+    background: #fafbfc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 1rem;
+    overflow-y: auto;      /* Permite rolar a tela de login */
+}
+.login-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+.login-header .icon {
+    font-size: 2.7rem;
+    margin-bottom: 0.5rem;
+}
+.login-header h1 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -1px;
+}
+.login-header p {
+    color: #64748b;
+    font-size: 1.1rem;
+    margin: 0.5rem 0 0 0;
+}
+.login-box {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+    padding: 2.5rem 2.5rem 2rem 2.5rem;
+    min-width: 380px;
+    max-width: 420px;
+    width: 100%;
+    box-sizing: border-box;
+    max-height: 95vh;      /* Limita a altura máxima da caixa */
+    overflow-y: auto;      /* Permite rolar a caixa se necessário */
+}
+.login-title {
+    margin-bottom: 1.2rem;
+}
+.login-title h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0 0 0.2rem 0;
+    color: #1e293b;
+}
+.login-title span {
+    color: #64748b;
+    font-size: 1rem;
+}
+.login-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+}
+.login-tab {
+    flex: 1;
+    padding: 1rem 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.7rem;
+    background: #e0f2fe;
+    color: #0e948c;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    margin-bottom: 0;
+    max-width: 180px;
+}
+.login-tab.active {
+    background: #17a89b;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(14,148,140,0.04);
+}
+.login-form {
+    display: none;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+.login-form.active {
+    display: flex;
+}
+.login-form label {
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 0.3rem;
+}
+.login-form input {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 0.6rem;
+    border: 1px solid #e2e8f0;
+    font-size: 1.08rem;
+    background: #f8fafc;
+    transition: border 0.2s;
+}
+.login-form input:focus {
+    border: 1.5px solid #0e948c;
+    outline: none;
+    background: #fff;
+}
+.input-password {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-password input {
+    width: 100%;
+    padding-right: 2.2rem;
+}
+.toggle-password {
+    position: absolute;
+    right: 0.7rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #64748b;
+    user-select: none;
+}
+.login-form .btn {
+    width: 100%;
+    padding: 1rem 0;
+    border-radius: 0.7rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    background: #0e948c;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 0.7rem;
+    transition: background 0.2s;
+}
+.login-form .btn:hover {
+    background: #0b746e;
+}
+@media (max-width: 600px) {
+    .login-bg {
+        align-items: stretch;
+        justify-content: flex-start;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    .login-box {
+        min-width: 100%;
+        max-width: 100%;
+        padding: 1.2rem 0.5rem;
+        border-radius: 0.5rem;
+        max-height: 100vh;
+    }
+    .login-header h1 {
+        font-size: 1.5rem;
+    }
+    .login-title h2 {
+        font-size: 1.1rem;
+    }
+    .login-form input,
+    .login-form .btn,
+    .login-tab {
+        font-size: 1rem;
+        padding: 0.7rem;
+    }
+    .login-tabs {
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+    .login-tab {
+        max-width: 100%;
+    }
+}

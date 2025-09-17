@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>GAIA - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAIA - Gerenciamento de Ambientes</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/admin.css">
+    <link rel="stylesheet" href="styles/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" style="display:none;">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <!-- Aumente o tamanho da logo no header (página inicial) -->
+                    <img src="images/Gemini_Generated_Image_rhwpzprhwpzprhwp-removebg-preview.png" alt="Logo GAIA" style="height:140px; width:auto; display:block;">
+                </div>
+                <!-- Remova ou mantenha o texto conforme desejar -->
+                <!-- <span class="logo-text">GAIA</span> -->
+            </div>
+            <nav class="nav">
+                <a href="#" class="nav-link active" data-page="home">Início</a>
+                <a href="#" class="nav-link" data-page="schedule">Agendamentos</a>
+                <a href="#" class="nav-link" data-page="reports">Relatórios</a>
+            </nav>
+            <div class="user-menu">
+                <button class="user-btn" id="userBtn">
+                    <span id="userName">Usuário</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 9L12 5H4L8 9Z"/>
+                    </svg>
+                </button>
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="#" id="adminLink" class="dropdown-item admin-only">Painel Admin</a>
+                    <a href="#" id="logoutBtn" class="dropdown-item">Sair</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- login -->
+    <!-- Tela de Login igual à imagem --> 
+    <div class="login-bg" id="loginContainer" style="background: url('images/ChatGPT Image 1 de set. de 2025, 12_51_52.png') no-repeat center center fixed; background-size: cover;">
+        <div class="login-header">
+            <div class="icon">
+                <!-- Aumente o tamanho da logo na tela de login -->
+                <img src="images/Gemini_Generated_Image_rhwpzprhwpzprhwp-removebg-preview.png" alt="Logo GAIA" style="width:250px; height:250px; object-fit:contain; display:block; margin:0 auto;">
+            </div>
+            <h1>GAIA</h1>
+            <p>Gerenciamento de Ambientes e Informações de Agendamento</p>
+        </div>
+        <div class="login-box">
+            <div class="login-title">
+                <h2>Acesso ao Sistema</h2>
+                <span>Entre em sua conta ou cadastre-se para acessar o sistema</span>
+            </div>
+            <div class="login-tabs">
+                <button class="login-tab active" id="tabLogin" type="button">Entrar</button>
+                <button class="login-tab" id="tabRegister" type="button">Cadastrar</button>
+            </div>
+            <!-- Formulário de Login -->
+            <form id="loginForm" class="login-form active" autocomplete="off">
+                <div>
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="seu@email.com" required>
+                </div>
+                <div>
+                    <label for="loginPassword">Senha</label>
+                    <div class="input-password">
+                        <input type="password" id="loginPassword" placeholder="Sua senha" required>
+                        <span class="toggle-password" onclick="togglePassword('loginPassword', this)">👁️</span>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Entrar</button>
+            </form>
+            <!-- Formulário de Cadastro -->
+            <form id="registerForm" class="login-form" autocomplete="off">
+                <div>
+                    <label for="registerName">Nome Completo</label>
+                    <input type="text" id="registerName" placeholder="Seu nome completo" required>
+                </div>
+                <div>
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" placeholder="seu@email.com" required>
+                </div>
+                <div>
+                    <label for="registerPassword">Senha</label>
+                    <div class="input-password">
+                        <input type="password" id="registerPassword" placeholder="Sua senha" required>
+                        <span class="toggle-password" onclick="togglePassword('registerPassword', this)">👁️</span>
+                    </div>
+                </div>
+                <div>
+                    <label for="registerPassword2">Confirmar Senha</label>
+                    <div class="input-password">
+                        <input type="password" id="registerPassword2" placeholder="Confirme sua senha" required>
+                        <span class="toggle-password" onclick="togglePassword('registerPassword2', this)">👁️</span>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main" style="display:none;">
+        <!-- Home Page -->
+        <div class="page active" id="homePage">
+            <div class="container">
+                <div class="hero">
+                    <h1>Bem-vindo ao GAIA</h1>
+                    <p>Gerenciamento inteligente de ambientes e agendamentos</p>
+                </div>
+                
+                <div class="units-grid">
+                    <div class="unit-card" data-unit="sesi">
+                        <div class="unit-header">
+                            <h3>SESI - Unidade Central</h3>
+                            <span class="unit-status available">Disponível</span>
+                        </div>
+                        <div class="unit-map">
+                            <div class="room auditorium" data-room="aud-001" data-type="auditorium">
+                                <span class="room-label">Auditório Principal</span>
+                            </div>
+                            <div class="room classroom" data-room="sala-101" data-type="classroom">
+                                <span class="room-label">Sala 101</span>
+                            </div>
+                            <div class="room classroom" data-room="sala-102" data-type="classroom">
+                                <span class="room-label">Sala 102</span>
+                            </div>
+                            <div class="room classroom" data-room="sala-103" data-type="classroom">
+                                <span class="room-label">Sala 103</span>
+                            </div>
+                        </div>
+                        <div class="unit-stats">
+                            <div class="stat">
+                                <span class="stat-number">4</span>
+                                <span class="stat-label">Ambientes</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">75%</span>
+                                <span class="stat-label">Ocupação</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="unit-card" data-unit="senai">
+                        <div class="unit-header">
+                            <h3>SENAI - Unidade Tecnológica</h3>
+                            <span class="unit-status busy">Ocupado</span>
+                        </div>
+                        <div class="unit-map">
+                            <div class="room auditorium" data-room="aud-002" data-type="auditorium">
+                                <span class="room-label">Auditório Tech</span>
+                            </div>
+                            <div class="room classroom" data-room="lab-201" data-type="classroom">
+                                <span class="room-label">Lab 201</span>
+                            </div>
+                            <div class="room classroom" data-room="lab-202" data-type="classroom">
+                                <span class="room-label">Lab 202</span>
+                            </div>
+                            <div class="room classroom occupied" data-room="lab-203" data-type="classroom">
+                                <span class="room-label">Lab 203</span>
+                            </div>
+                        </div>
+                        <div class="unit-stats">
+                            <div class="stat">
+                                <span class="stat-number">4</span>
+                                <span class="stat-label">Ambientes</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">90%</span>
+                                <span class="stat-label">Ocupação</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Schedule Page -->
+        <div class="page" id="schedulePage">
+            <div class="container">
+                <div class="page-header">
+                    <h2>Meus Agendamentos</h2>
+                    <button class="btn btn-primary" id="newScheduleBtn">Novo Agendamento</button>
+                </div>
+                
+                <div class="schedule-filters">
+                    <select id="unitFilter">
+                        <option value="">Todas as Unidades</option>
+                        <option value="sesi">SESI - Central</option>
+                        <option value="senai">SENAI - Tecnológica</option>
+                    </select>
+                    <select id="typeFilter">
+                        <option value="">Todos os Tipos</option>
+                        <option value="auditorium">Auditórios</option>
+                        <option value="classroom">Salas de Aula</option>
+                    </select>
+                    <input type="date" id="dateFilter">
+                </div>
+
+                <div class="schedule-list" id="scheduleList">
+                    <!-- Agendamentos serão carregados aqui -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Reports Page -->
+        <div class="page" id="reportsPage">
+            <div class="container">
+                <h2>Relatórios de Utilização</h2>
+                
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <h3>Ocupação por Unidade</h3>
+                        <div class="chart-container">
+                            <canvas id="unitChart" width="300" height="200"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="report-card">
+                        <h3>Horários de Pico</h3>
+                        <div class="chart-container">
+                            <canvas id="timeChart" width="300" height="200"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="report-card">
+                        <h3>Tipos de Ambiente</h3>
+                        <div class="usage-stats">
+                            <div class="usage-item">
+                                <span class="usage-label">Auditórios</span>
+                                <div class="usage-bar">
+                                    <div class="usage-fill" style="width: 65%"></div>
+                                </div>
+                                <span class="usage-percent">65%</span>
+                            </div>
+                            <div class="usage-item">
+                                <span class="usage-label">Salas de Aula</span>
+                                <div class="usage-bar">
+                                    <div class="usage-fill" style="width: 82%"></div>
+                                </div>
+                                <span class="usage-percent">82%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Page -->
+        <div class="page admin-only" id="adminPage">
+            <div class="container">
+                <div class="admin-header">
+                    <h2>Painel Administrativo</h2>
+                    <div class="admin-actions">
+                        <button class="btn btn-secondary" id="addUnitBtn">Nova Unidade</button>
+                        <button class="btn btn-secondary" id="addRoomBtn">Novo Ambiente</button>
+                    </div>
+                </div>
+
+                <div class="admin-tabs">
+                    <button class="tab-btn active" data-tab="environments">Ambientes</button>
+                    <button class="tab-btn" data-tab="schedules">Agendamentos</button>
+                    <button class="tab-btn" data-tab="users">Usuários</button>
+                </div>
+
+                <div class="tab-content active" id="environmentsTab">
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Ambiente</th>
+                                    <th>Unidade</th>
+                                    <th>Tipo</th>
+                                    <th>Capacidade</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="environmentsTableBody">
+                                <!-- Dados serão carregados aqui -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="schedulesTab">
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Data/Hora</th>
+                                    <th>Ambiente</th>
+                                    <th>Usuário</th>
+                                    <th>Finalidade</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="schedulesTableBody">
+                                <!-- Dados serão carregados aqui -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="usersTab">
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Tipo</th>
+                                    <th>Agendamentos</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <!-- Dados serão carregados aqui -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room Details Modal -->
+    <div class="modal" id="roomModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="roomTitle">Detalhes do Ambiente</h3>
+                <button class="close-btn" id="closeRoom">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="room-details" id="roomDetails">
+                    <!-- Detalhes serão carregados aqui -->
+                </div>
+                <div class="room-actions">
+                    <button class="btn btn-primary" id="scheduleRoomBtn">Agendar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Modal -->
+    <div class="modal" id="scheduleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Novo Agendamento</h3>
+                <button class="close-btn" id="closeSchedule">&times;</button>
+            </div>
+            <form id="scheduleForm" class="form">
+                <div class="form-group">
+                    <label for="scheduleRoom">Ambiente:</label>
+                    <select id="scheduleRoom" required>
+                        <option value="">Selecione um ambiente</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="scheduleDate">Data:</label>
+                    <input type="date" id="scheduleDate" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="scheduleStartTime">Hora Início:</label>
+                        <input type="time" id="scheduleStartTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="scheduleEndTime">Hora Fim:</label>
+                        <input type="time" id="scheduleEndTime" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="schedulePurpose">Finalidade:</label>
+                    <textarea id="schedulePurpose" rows="3" required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelSchedule">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Agendar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Modals -->
+    <div class="modal" id="roomFormModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="roomFormTitle">Novo Ambiente</h3>
+                <button class="close-btn" id="closeRoomForm">&times;</button>
+            </div>
+            <form id="roomForm" class="form">
+                <div class="form-group">
+                    <label for="roomName">Nome do Ambiente:</label>
+                    <input type="text" id="roomName" required>
+                </div>
+                <div class="form-group">
+                    <label for="roomUnit">Unidade:</label>
+                    <select id="roomUnit" required>
+                        <option value="">Selecione uma unidade</option>
+                        <option value="sesi">SESI - Central</option>
+                        <option value="senai">SENAI - Tecnológica</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="roomType">Tipo:</label>
+                    <select id="roomType" required>
+                        <option value="">Selecione o tipo</option>
+                        <option value="auditorium">Auditório</option>
+                        <option value="classroom">Sala de Aula</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="roomCapacity">Capacidade:</label>
+                    <input type="number" id="roomCapacity" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="roomResources">Recursos:</label>
+                    <textarea id="roomResources" rows="3" placeholder="Ex: Projetor, Ar-condicionado, Computadores..."></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelRoomForm">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+      // Garante que a tela de login/cadastro fique visível até login real
+      document.addEventListener('DOMContentLoaded', function() {
+        // Sempre mostra login/cadastro ao carregar
+        document.getElementById('loginContainer').style.display = '';
+        document.querySelector('.header').style.display = 'none';
+        document.querySelector('.main').style.display = 'none';
+      });
+    </script>
+    <script>
+      // Força sempre mostrar login ao recarregar (para depuração)
+      localStorage.removeItem('usuarioLogado');
+      sessionStorage.removeItem('usuarioLogado');
+    </script>
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>
